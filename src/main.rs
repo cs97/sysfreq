@@ -67,7 +67,7 @@ fn all_cpu_infos() {
 	println!("  available frequency range: {} GHz - {} GHz", KHz_to_GHz(cpu_info("min_freq")), KHz_to_GHz(cpu_info("max_freq")));
 	println!("  current govenor: {}", cpu_info("governor"));
 	println!("  current frequency: {} GHz", KHz_to_GHz(cpu_info("cur_freq")));
-	println!("  boost state: {}", file_to_string("/sys/devices/system/cpu/cpufreq/boost").expect("error");.unwrap());
+	println!("  boost state: {}", file_to_string("/sys/devices/system/cpu/cpufreq/boost").expect("error");
 }
 
 fn amd_gpu_infos() {

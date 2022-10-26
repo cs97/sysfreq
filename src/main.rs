@@ -20,7 +20,7 @@
 //	
 //	vbios_version
 //	vendor
-
+use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 

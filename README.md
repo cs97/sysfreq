@@ -1,7 +1,7 @@
 # sysfreq
 
 ### Usage
-* ./nvmon
+* ./sysfreq
 ```
 CPU:
   driver: acpi-cpufreq

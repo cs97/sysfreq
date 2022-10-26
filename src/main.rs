@@ -125,7 +125,7 @@ fn doit() -> std::io::Result<()> {
 
 	let arg = &args[1].as_str();
 	match arg {
-		&"--cpu-info" => cpu_infos(),
+		&"--cpu-info" => all_cpu_infos(),
 		&"--gpu-info" => amd_gpu_infos(),
 		_ => Ok(print_usage(&args[0])),
 	}?;

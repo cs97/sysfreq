@@ -37,7 +37,7 @@ fn file_to_string(file_name: &str) -> std::io::Result<String> {
 
 
 fn gpu_info(s: &str) -> String {
-	let path: String = "/sys/class/drm/card1/device/".to_string();
+	let path: String = "/sys/class/drm/card0/device/".to_string();
 	return file_to_string(&(path + s)).unwrap();
 }
 

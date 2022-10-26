@@ -110,26 +110,23 @@ fn amd_gpu_infos() {
 	}
 }
 
-fn print_usage(prog_name: &str) -> () {
+fn print_usage(prog_name: &str) {
 	println!("usage:");
 	println!("\t{} {}", prog_name, "--cpu-info");
 	println!("\t{} {}", prog_name, "--gpu-info");
 }
 
-fn doit() -> std::io::Result<()> {
+fn doit() {
 	let args: Vec<String> = env::args().collect();
 	if args.len() < 2 {
 		print_usage(&args[0]);
-		return Ok(());
 	}
-
 	let arg = &args[1].as_str();
 	match arg {
 		&"--cpu-info" => all_cpu_infos(),
 		&"--gpu-info" => amd_gpu_infos(),
 		_ => print_usage(&args[0]),
 	};
-	return Ok(());
 }
 
 

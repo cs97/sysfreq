@@ -84,6 +84,9 @@ fn amd_gpu_infos() {
 	for line in gpu_info("pp_dpm_mclk").lines() {
     	println!("    {}", line);
     }
+	for line in gpu_info("pp_od_clk_voltage").lines() {
+    	println!("    {}", line);
+    }
 }
 
 

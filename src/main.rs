@@ -84,8 +84,16 @@ fn amd_gpu_infos() {
 	for line in gpu_info("pp_dpm_mclk").lines() {
     	println!("    {}", line);
     }
+	println!("  pp_od_clk_voltage:");
 	for line in gpu_info("pp_od_clk_voltage").lines() {
-    	println!("    {}", line);
+		if line =="OD_VDDC_CURVE:" {
+			for _x in 0..3 {
+				println!("    {}", line);
+			}
+		}
+		
+
+
     }
 }
 

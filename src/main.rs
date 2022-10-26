@@ -33,12 +33,12 @@ fn file_to_string(file_name: &str) -> std::io::Result<String> {
 
 
 fn gpu_info(s: &str) -> String {
-	let path: String = ("/sys/class/drm/card0/device/".to_string() + s);
+	let path: String = "/sys/class/drm/card0/device/".to_string() + s;
 	return file_to_string(&path).unwrap();
 }
 
 fn cpu_info(s: &str) -> String {
-	let path: String = ("/sys/devices/system/cpu/cpu0/cpufreq/scaling_".to_string() + s);
+	let path: String = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_".to_string() + s;
 	return file_to_string(&path).unwrap();
 }
 
@@ -53,7 +53,7 @@ fn set_cpu_boost(boost: bool) -> std::io::Result<()> {
 }
 
 fn set_cpu(s: &str, v: &str) -> std::io::Result<()> {
-	let path: String = ("/sys/devices/system/cpu/cpu0/cpufreq/scaling_".to_string() + s);
+	let path: String = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_".to_string() + s;
 	let mut f = File::create(path).unwrap();
 	f.write_all(v.as_bytes()).unwrap();
 	return Ok(())

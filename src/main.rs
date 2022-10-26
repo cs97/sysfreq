@@ -1,5 +1,4 @@
 
-
 //	CPU
 //	/sys/devices/system/cpu/cpu0/cpufreq/
 
@@ -11,9 +10,7 @@
 //	scaling_setspeed
 //	scaling_governor
 //	scaling_driver
-//	 /sys/devices/system/cpu/cpufreq/boost
-
-
+//	/sys/devices/system/cpu/cpufreq/boost
 
 // GPU
 //	/sys/class/drm/card1/device/
@@ -23,7 +20,6 @@
 //	
 //	vbios_version
 //	vendor
-
 
 use std::fs::File;
 use std::io::prelude::*;
@@ -44,6 +40,23 @@ fn gpu_info(s: &str) -> String {
 fn cpu_info(s: &str) -> String {
 	let path: String = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_".to_string();
 	return file_to_string(&(path + s)).unwrap();
+}
+
+fn set_cpu_boost(boost: bool) -> std::io::Result<()> {
+	let mut f = File::create("/sys/devices/system/cpu/cpufreq/boost")?;
+	if boost == true {
+ 		f.write_all(b"1")?;
+	} else {
+		f.write_all(b"0")?;
+	}
+	return Ok(())
+}
+
+fn set_cpu(s: &str, v: &str) -> std::io::Result<()> {
+	let path: String = ("/sys/devices/system/cpu/cpu0/cpufreq/scaling_").to_string();
+	let mut f = File::create(path + s).unwrap();
+	f.write_all(v.as_bytes()).unwrap();
+	return Ok(())
 }
 
 //fn divided_M() -> String {
@@ -84,8 +97,6 @@ fn amd_gpu_infos() {
 	for line in gpu_info("pp_dpm_mclk").lines() {
 		println!("    {}", line);
 	}
-
-	//println!("  pp_od_clk_voltage:");
 	let mut counter = 0;
 	for line in gpu_info("pp_od_clk_voltage").lines() {
 		if counter > 0 {
@@ -96,14 +107,14 @@ fn amd_gpu_infos() {
 			println!("  OD_VDDC_CURVE:");
 			counter = 3;
 		}
-		
 	}
 }
 
-
-
-
 fn main() {
+
+	//set_cpu("min_freq", "1300000").unwrap();
+	//set_cpu_boost(false);
+
 	//all_cpu_infos();
 	//amd_gpu_infos();
 

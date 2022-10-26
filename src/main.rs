@@ -110,8 +110,34 @@ fn amd_gpu_infos() {
 	}
 }
 
-fn main() {
+fn print_usage(prog_name: &str) -> () {
+	println!("usage:");
+	println!("\t{} {}", prog_name, "--cpu-info");
+	println!("\t{} {}", prog_name, "--gpu-info");
+}
 
+fn doit() -> std::io::Result<()> {
+	let args: Vec<String> = env::args().collect();
+	if args.len() < 3 {
+		print_usage(&args[0]);
+		return Ok(());
+	}
+
+	let arg = &args[1].as_str();
+	match arg {
+		&"--cpu-info" => cpu_infos(),
+		&"--gpu-info" => amd_gpu_infos()),
+		_ => Ok(print_usage(&args[0])),
+	}?;
+	return Ok(());
+}
+
+
+
+
+
+fn main() {
+	doit();
 	//set_cpu("min_freq", "1300000").unwrap();
 	//set_cpu_boost(false);
 

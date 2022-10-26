@@ -86,7 +86,7 @@ fn amd_gpu_infos() {
     }
 
 	//println!("  pp_od_clk_voltage:");
-	println!("  OD_VDDC_CURVE:");
+	
 	let mut counter = 0;
 	for line in gpu_info("pp_od_clk_voltage").lines() {
 		if counter > 0 {
@@ -94,6 +94,7 @@ fn amd_gpu_infos() {
 			counter -= 1;
 		}
 		if line.contains("OD_VDDC_CURVE:") {
+			println!("  OD_VDDC_CURVE:");
 			counter = 3;
 		}
 		

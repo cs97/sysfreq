@@ -67,7 +67,7 @@ fn all_cpu_infos() {
 	println!("  available frequency range: {} GHz - {} GHz", KHz_to_GHz(cpu_info("min_freq")), KHz_to_GHz(cpu_info("max_freq")));
 	println!("  current govenor: {}", cpu_info("governor"));
 	println!("  current frequency: {} GHz", KHz_to_GHz(cpu_info("cur_freq")));
-	println!("  boost state: {}", file_to_string("/sys/devices/system/cpu/cpufreq/boost").unwrap());
+	println!("  boost state: {}", file_to_string("/sys/devices/system/cpu/cpufreq/boost").expect("error");.unwrap());
 }
 
 fn amd_gpu_infos() {
@@ -86,7 +86,6 @@ fn amd_gpu_infos() {
     }
 
 	//println!("  pp_od_clk_voltage:");
-	
 	let mut counter = 0;
 	for line in gpu_info("pp_od_clk_voltage").lines() {
 		if counter > 0 {
@@ -105,8 +104,8 @@ fn amd_gpu_infos() {
 
 
 fn main() {
-	all_cpu_infos();
-	amd_gpu_infos();
+	//all_cpu_infos();
+	//amd_gpu_infos();
 
 }
 

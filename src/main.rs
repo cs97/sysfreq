@@ -29,10 +29,10 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn file_to_string(file_name: &str) -> std::io::Result<String> {
-    let mut file = File::open(file_name)?;
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)?;
-    Ok(contents[..contents.len() - 1].to_string())
+	let mut file = File::open(file_name)?;
+	let mut contents = String::new();
+	file.read_to_string(&mut contents)?;
+	Ok(contents[..contents.len() - 1].to_string())
 }
 
 
@@ -62,8 +62,8 @@ fn B_to_M(s: String) -> String {
 
 fn all_cpu_infos() {
 	println!("CPU:");
-    println!("  driver: {}", cpu_info("driver"));
-    println!("  available governors: {}", cpu_info("available_governors"));
+	println!("  driver: {}", cpu_info("driver"));
+	println!("  available governors: {}", cpu_info("available_governors"));
 	println!("  available frequency range: {} GHz - {} GHz", KHz_to_GHz(cpu_info("min_freq")), KHz_to_GHz(cpu_info("max_freq")));
 	println!("  current govenor: {}", cpu_info("governor"));
 	println!("  current frequency: {} GHz", KHz_to_GHz(cpu_info("cur_freq")));
@@ -78,12 +78,12 @@ fn amd_gpu_infos() {
 
 	println!("  current sclk:");
 	for line in gpu_info("pp_dpm_sclk").lines() {
-    	println!("    {}", line);
-    }
+		println!("    {}", line);
+	}
 	println!("  current mclk:");
 	for line in gpu_info("pp_dpm_mclk").lines() {
-    	println!("    {}", line);
-    }
+		println!("    {}", line);
+	}
 
 	//println!("  pp_od_clk_voltage:");
 	let mut counter = 0;
@@ -97,7 +97,7 @@ fn amd_gpu_infos() {
 			counter = 3;
 		}
 		
-    }
+	}
 }
 
 
